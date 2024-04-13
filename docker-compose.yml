@@ -1,0 +1,10 @@
+version: "3.3"
+services:
+  db:
+    image: postgres:14.6
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: scraper
+    ports:
+      - "5432:5432" # left is outside compose network, right is in compose network

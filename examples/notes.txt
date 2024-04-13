@@ -1,0 +1,29 @@
+type Business {
+  id: ID
+  name: String                                YELP          
+  shortDesc: String                           CHATGPT
+  description: String                         CHATGPT
+  websiteUrl: String                          YELP
+  reviewSiteLinks: [ReviewSiteLinkPreview]    MANUAL
+  minDurationHour: Int                        CHATGPT
+  maxDurationHour: Int                        CHATGPT
+  minPeople: Int                              CHATGPT
+  maxPeople: Int                              CHATGPT
+  maxCostPerPerson: Float                     CHATGPT
+  minCostPerPerson: Float                     CHATGPT
+  googlePlaceId: String                       GOOG
+  createdAt: DateTime                         
+  updatedAt: DateTime
+  tags: [String]                              CHATGPT
+  latitude: Float                             GOOG
+  longitude: Float                            GOOG
+  address: String                             YELP
+  city: String                                MANUAL
+  rating: Float                               YELP
+  phone: String                               YELP
+  hours: [BusinessHour!]!                     GOOG
+  isFavorited: Boolean                        
+}
+
+
+YELP - name, websiteUrl, address, rating, phone

@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model YelpListPageTask {
+  id        Int      @id @default(autoincrement())
+  city      String
+  url       String   @unique
+  page      Int
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  links     String[]
+}
+
+model YelpProfilePageTask {
+  id        Int      @id @default(autoincrement())
+  url       String   @unique
+  name      String
+  rating    String
+  website   String
+  phone     String
+  address   String
+  hours     Json
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GoogleLatLongTask {
+  id           Int      @id @default(autoincrement())
+  businessName String
+  address      String   @unique
+  lat          Float
+  long         Float
+  completed    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model BusinessSiteTask {
+  id        Int      @id @default(autoincrement())
+  website   String   @unique
+  links     String[]
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BusinessSiteDataTask {
+  id        Int      @id @default(autoincrement())
+  website   String   @unique
+  texts     String[]
+  images    String[]
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ChatGptTask {
+  id        Int      @id @default(autoincrement())
+  domain    String   @unique
+  result    Json
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
