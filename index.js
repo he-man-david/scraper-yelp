@@ -1,10 +1,5 @@
 import YelpBizPageInitializer from "./tasks/yelp/yelp-biz-page-path-initializer";
-import GoogleLatLong from "./tasks/google/google-lat-long";
-import ScrapeYelpSearchList from "./tasks/yelp/scrape-yelp-search-list";
-import ScrapeYelpBizPage from "./tasks/yelp/scrape-yelp-biz-page";
-import ScrapeBusinessWebsite from "./tasks/business-website/scrape-business-website";
-import ScrapeImage from "./tasks/business-website/scrape-image";
-import ChatGPTTask from "./tasks/chatgpt/extract-data-from-text";
+// import ChatGPTTask from "./tasks/chatgpt/extract-data-from-text";
 import LauncherYelpListPage from "./launchers/yelpListPage";
 import LauncherYelpProfilePage from "./launchers/yelpProfilePage";
 import LauncherGoogleLatLong from "./launchers/googleLatLong";
@@ -15,14 +10,14 @@ import { PrismaClient } from "./prisma/client";
 const prisma = new PrismaClient();
 
 const main = async () => {
-  // City must be + separated instead of space, no special characters no commas, all lowercase
-  const city = "new+york+city";
+  const city = "new york city";
+  const searchPhrase = "organic farms in Washington state";
 
   // 1) Run Launcher to start scraping YELP list pages for a given city
   //    Every city has different number of good results. So need to manually
   //    go on YELP, check how many pages there are, and up to what page (maxPage)
-  //    will the results be "good". We don't want bad results... example page 35 of Google
-  await Launcher(prisma, city, 14);
+  //    will the results be "good". We don't want bad results... like page 35 of Google
+  await LauncherYelpListPage(prisma, searchPhrase, city, 14);
 
   // 2.A) Initializing to map all paths for YELP contents on business profile page
 
@@ -48,9 +43,9 @@ const main = async () => {
 
   // 4. Scrape all text from each business site, aggregate, send to chatgpt
 
-  const res = await ChatGPTTask(text);
+  // const res = await ChatGPTTask(text);
 
-  console.log(JSON.stringify(res, null, 2));
+  // console.log(JSON.stringify(res, null, 2));
 };
 
 await main()

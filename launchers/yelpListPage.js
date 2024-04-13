@@ -1,8 +1,10 @@
 import ScrapeYelpSearchList from "../tasks/yelp/scrape-yelp-search-list";
 
-export default async function (prisma, city, maxPage) {
+export default async function (prisma, searchPhrase, city, maxPage) {
   try {
-    const url = `https://www.yelp.com/search?find_desc=team+building&find_loc=${city}&start=`;
+    searchPhrase = searchPhrase.replace(" ", "+");
+    city = city.replace(" ", "+");
+    const url = `https://www.yelp.com/search?find_desc=${searchPhrase}&find_loc=${city}&start=`;
 
     for (let page = 0; page < maxPage; page++) {
       const offset = page * 10;

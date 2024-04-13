@@ -1,5 +1,4 @@
 import BaseScraper from "../base";
-// import yelpHTML from "../../examples/yelp-biz-page-01";
 
 // These are defaults. They are used to match the text on a html page, and get the paths to that content.
 // Use below as examples. Best to manually double check and make sure phone/rating/address...etc did not change.
@@ -33,9 +32,6 @@ export default class YelpBizPageInitializer extends BaseScraper {
         premium_proxy: "true",
         js_instructions: "%5B%7B%22wait%22%3A2000%7D%5D",
       });
-
-      // use this to avoid too many calls to ZenRows
-      // this.setHtml(yelpHTML);
 
       // get all paths to texts on page that we want to find
       for (const field in this.textsOnPage) {
